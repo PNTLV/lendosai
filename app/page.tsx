@@ -45,31 +45,57 @@ function HeroSection() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-16">
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.08] via-transparent to-purple-500/[0.08] blur-3xl" />
-
-      {/* Floating shapes */}
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950/90 to-slate-800 pt-16">
+      {/* Stylish layered backgrounds */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-slate-900" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/8 via-purple-500/5 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-cyan-400/5 via-transparent to-transparent" />
+      
+      {/* Floating decorative elements */}
+      <div className="absolute top-24 left-16 w-32 h-32 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-32 right-20 w-40 h-40 bg-gradient-to-br from-purple-500/12 to-cyan-500/12 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+      <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-cyan-500/8 to-blue-500/8 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}} />
+      <div className="absolute top-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '3s'}} />
+      
+      {/* Geometric patterns */}
+      <div className="absolute top-20 right-1/4 w-20 h-20 border border-blue-400/20 rounded-xl rotate-12 animate-pulse" style={{animationDelay: '2.5s'}} />
+      <div className="absolute bottom-24 left-1/3 w-16 h-16 border border-purple-400/15 rounded-lg -rotate-12 animate-pulse" style={{animationDelay: '1.5s'}} />
+      <div className="absolute top-1/4 left-16 w-12 h-12 border border-cyan-400/20 rounded-full animate-pulse" style={{animationDelay: '3.5s'}} />
+      
+      {/* Complex floating shapes with smooth motion */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/3 left-1/5 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
+          className="absolute top-1/3 left-1/5 w-72 h-72 bg-gradient-to-br from-blue-500/8 to-purple-500/8 rounded-full blur-3xl"
           animate={{
-            x: [0, 150, 0],
-            y: [0, 80, 0],
-            scale: [1, 1.2, 1],
+            x: [0, 120, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.15, 1],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/5 w-80 h-80 bg-accent/15 rounded-full blur-3xl"
+          className="absolute bottom-1/3 right-1/5 w-80 h-80 bg-gradient-to-br from-purple-500/6 to-cyan-500/6 rounded-full blur-3xl"
           animate={{
-            x: [0, -100, 0],
-            y: [0, -60, 0],
-            scale: [1, 1.3, 1],
+            x: [0, -80, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 right-1/4 w-60 h-60 bg-gradient-to-br from-indigo-500/7 to-blue-500/7 rounded-full blur-3xl"
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -80, 0],
+            scale: [1, 1.1, 1],
           }}
           transition={{
             duration: 22,
