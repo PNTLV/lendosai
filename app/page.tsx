@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { 
   ArrowRight, 
@@ -151,9 +151,11 @@ function HeroSection() {
   );
 }
 
-// Problem Section Component - Interactive Day in the Life
+// Problem Section Component - Scroll-based Animation
 function ProblemSection() {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   
   const daySchedule = [
     {
@@ -235,15 +237,59 @@ function ProblemSection() {
     }
   ];
 
+  // Calculate how many timeline items should be active based on scroll progress
+  const activeTimelineItems = Math.floor(scrollProgress * daySchedule.length);
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime((prev) => (prev + 1) % daySchedule.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
+    const handleScroll = () => {
+      if (!sectionRef.current || !isInView) return;
+
+      const section = sectionRef.current;
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate how much of the section has been scrolled through
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      
+      // Progress from 0 to 1 as the section scrolls through the viewport
+      let progress = 0;
+      
+      if (sectionTop <= windowHeight && sectionBottom >= 0) {
+        // Section is in viewport
+        const visibleHeight = Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
+        const scrolledIntoView = windowHeight - Math.max(0, sectionTop);
+        const maxScroll = sectionHeight + windowHeight;
+        progress = Math.max(0, Math.min(1, scrolledIntoView / maxScroll));
+      }
+      
+      setScrollProgress(progress);
+    };
+
+    // Intersection Observer to detect when section is in view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial calculation
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, [isInView]);
 
   return (
-    <section id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
+    <section ref={sectionRef} id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -283,30 +329,32 @@ function ProblemSection() {
               <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-200 to-orange-200 dark:from-red-800 dark:to-orange-800" />
               
               {daySchedule.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ 
-                    opacity: currentTime >= index ? 1 : 0.3,
-                    x: 0 
-                  }}
-                  transition={{ delay: index * 0.2 }}
-                  className={`relative flex items-start gap-4 pb-8 ${
-                    currentTime === index ? 'scale-105' : ''
-                  }`}
-                >
-                  {/* Timeline dot */}
-                  <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center ${
-                    item.type === 'waste' ? 'bg-red-100 text-red-600 border-2 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800' :
-                    item.type === 'manual' ? 'bg-yellow-100 text-yellow-600 border-2 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-400 dark:border-yellow-800' :
-                    item.type === 'status' ? 'bg-orange-100 text-orange-600 border-2 border-orange-200 dark:bg-orange-950 dark:text-orange-400 dark:border-orange-800' :
-                    'bg-gray-100 text-gray-600 border-2 border-gray-200 dark:bg-gray-950 dark:text-gray-400 dark:border-gray-800'
-                  } transition-all duration-300`}>
-                    {item.icon}
-                  </div>
-                  
-                  {/* Content */}
-                  <div className={`flex-1 ${currentTime === index ? 'bg-card border border-border rounded-lg p-4 shadow-lg' : 'pt-2'}`}>
+                                 <motion.div
+                   key={index}
+                   initial={{ opacity: 0, x: -20 }}
+                   animate={{ 
+                     opacity: index < activeTimelineItems ? 1 : 0.3,
+                     x: 0 
+                   }}
+                   transition={{ delay: index * 0.2 }}
+                   className={`relative flex items-start gap-4 pb-8 ${
+                     index === activeTimelineItems - 1 && activeTimelineItems > 0 ? 'scale-105' : ''
+                   }`}
+                 >
+                   {/* Timeline dot */}
+                   <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center ${
+                     index < activeTimelineItems
+                       ? item.type === 'waste' ? 'bg-red-100 text-red-600 border-2 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800' :
+                         item.type === 'manual' ? 'bg-yellow-100 text-yellow-600 border-2 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-400 dark:border-yellow-800' :
+                         item.type === 'status' ? 'bg-orange-100 text-orange-600 border-2 border-orange-200 dark:bg-orange-950 dark:text-orange-400 dark:border-orange-800' :
+                         'bg-gray-100 text-gray-600 border-2 border-gray-200 dark:bg-gray-950 dark:text-gray-400 dark:border-gray-800'
+                       : 'bg-gray-50 text-gray-400 border-2 border-gray-100 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-800'
+                   } transition-all duration-500`}>
+                     {item.icon}
+                   </div>
+                   
+                   {/* Content */}
+                   <div className={`flex-1 ${index === activeTimelineItems - 1 && activeTimelineItems > 0 ? 'bg-card border border-border rounded-lg p-4 shadow-lg' : 'pt-2'}`}>
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-lg font-bold text-primary">{item.time}</span>
                       <span className="text-sm bg-secondary/50 px-2 py-1 rounded">
