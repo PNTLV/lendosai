@@ -1313,34 +1313,124 @@ export default function LandingPage() {
       <PricingSection />
       
       {/* Final CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-600 via-purple-600/90 to-indigo-600 overflow-hidden">
-        {/* CTA декоративные элементы */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.03]" />
-        <div className="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}} />
-        <div className="absolute top-20 right-1/4 w-16 h-16 bg-white/15 rounded-full blur-lg animate-pulse" style={{animationDelay: '2s'}} />
+      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-indigo-950/80 to-slate-800 overflow-hidden">
+        {/* Stylish background decorations */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-slate-900" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
         
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-              Готовы трансформировать свой фонд?
-            </h2>
-            <p className="text-xl text-primary-foreground/80 mb-8">
-              Начните использовать AI для автоматизации скрининга уже сегодня
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-background text-foreground rounded-full font-semibold hover:bg-background/90 transition-colors"
+        {/* Floating decorative elements */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-br from-purple-500/8 to-cyan-500/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-cyan-500/6 to-blue-500/6 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}} />
+        
+        {/* Geometric patterns */}
+        <div className="absolute top-16 right-1/4 w-20 h-20 border border-blue-400/20 rounded-xl rotate-12 animate-pulse" style={{animationDelay: '3s'}} />
+        <div className="absolute bottom-24 left-1/4 w-16 h-16 border border-purple-400/15 rounded-lg -rotate-12 animate-pulse" style={{animationDelay: '1.5s'}} />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-5 gap-12 items-center max-w-7xl mx-auto">
+            
+            {/* Left: Main Content - takes 3 columns */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="lg:col-span-3 space-y-8"
             >
-              Начать бесплатный период
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
-          </motion.div>
+              {/* Trust badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium">
+                <Shield className="w-4 h-4" />
+                Доверие 250+ венчурных фондов
+              </div>
+              
+              {/* Main heading - no line breaks */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Время принять <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">решение</span>
+              </h2>
+              
+              {/* Description */}
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Трансформируйте свой фонд с помощью AI и увеличьте эффективность скрининга в 15 раз
+              </p>
+
+              {/* CTA Button */}
+              <div className="pt-2">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center gap-3 px-12 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/30 hover:shadow-blue-600/50"
+                >
+                  <Rocket className="w-6 h-6" />
+                  Начать внедрение
+                </motion.button>
+              </div>
+
+              {/* Trust indicators */}
+              <div className="flex items-center gap-8 text-sm text-gray-400">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Внедрение за 24 часа</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Бесплатная демонстрация</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right: Visual Element - takes 2 columns */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="lg:col-span-2 flex justify-center"
+            >
+              <div className="relative">
+                {/* Main visual card */}
+                <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/60 backdrop-blur-sm border border-slate-700/30 rounded-3xl p-8 shadow-2xl">
+                  <div className="space-y-6">
+                    {/* Header */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                          <Brain className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <div className="text-white font-semibold">VentureAI</div>
+                          <div className="text-xs text-gray-400">AI-Powered</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-green-400 text-xs">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        Live
+                      </div>
+                    </div>
+                    
+                    {/* Key metric */}
+                    <div className="text-center py-4">
+                      <div className="text-3xl font-bold text-white mb-2">15x</div>
+                      <div className="text-sm text-gray-400">Faster Screening</div>
+                      <div className="text-xs text-blue-400">vs Manual Process</div>
+                    </div>
+
+                    {/* Progress indicator */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs text-gray-400">
+                        <span>Efficiency</span>
+                        <span>98.7%</span>
+                      </div>
+                      <div className="w-full bg-slate-700 rounded-full h-1.5">
+                        <div className="bg-gradient-to-r from-blue-500 to-cyan-400 h-1.5 rounded-full" style={{width: '98.7%'}} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating accent */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg rotate-12 animate-pulse" style={{animationDelay: '2s'}} />
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
