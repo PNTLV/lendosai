@@ -238,61 +238,81 @@ function ProblemSection() {
   ];
 
   // Calculate how many timeline items should be active based on scroll progress
-  const activeTimelineItems = Math.floor(scrollProgress * daySchedule.length);
+  // Минимум 1 элемент активен когда секция в зоне видимости (scrollProgress > 0)
+  const activeTimelineItems = scrollProgress > 0 
+    ? Math.min(daySchedule.length, Math.floor(scrollProgress * daySchedule.length) + 1)
+    : 0;
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current || !isInView) return;
+      if (!sectionRef.current) return;
 
       const section = sectionRef.current;
       const rect = section.getBoundingClientRect();
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
-      
-      // Calculate how much of the section has been scrolled through
       const sectionTop = rect.top;
       const sectionBottom = rect.bottom;
       
-      // Progress from 0 to 1 as the section scrolls through the viewport
       let progress = 0;
       
-      if (sectionTop <= windowHeight && sectionBottom >= 0) {
-        // Section is in viewport
-        const visibleHeight = Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
-        const scrolledIntoView = windowHeight - Math.max(0, sectionTop);
-        const maxScroll = sectionHeight + windowHeight;
-        progress = Math.max(0, Math.min(1, scrolledIntoView / maxScroll));
+      // Секция появляется снизу экрана
+      if (sectionTop >= windowHeight) {
+        progress = 0;
+      }
+      // Секция полностью ушла вверх за экран
+      else if (sectionBottom <= 0) {
+        progress = 1;
+      }
+      // Секция в процессе прокрутки через viewport
+      else {
+        // Когда секция только начинает появляться: sectionTop = windowHeight, progress = 0
+        // Когда секция уходит наверх: sectionBottom = 0, progress = 1
+        // Общий путь который должна пройти секция = windowHeight + sectionHeight
+        const totalScrollDistance = windowHeight + sectionHeight;
+        const scrolledDistance = windowHeight - sectionTop;
+        progress = Math.max(0, Math.min(1, scrolledDistance / totalScrollDistance));
       }
       
       setScrollProgress(progress);
     };
 
-    // Intersection Observer to detect when section is in view
+    // Intersection Observer для оптимизации - только слушаем scroll когда секция рядом
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          handleScroll(); // Обновляем прогресс когда секция входит в зону видимости
+        }
       },
-      { threshold: 0.1 }
+      { rootMargin: '100px' } // Начинаем отслеживать за 100px до появления
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial calculation
+    // Добавляем scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Начальный расчет
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [isInView]);
+  }, []);
 
   return (
     <section ref={sectionRef} id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
+          {/* Debug Progress Indicator - временно для отладки */}
+          <div className="fixed top-4 right-4 bg-black/80 text-white p-2 rounded text-xs font-mono z-50">
+            <div>Scroll Progress: {(scrollProgress * 100).toFixed(1)}%</div>
+            <div>Active Items: {activeTimelineItems}/{daySchedule.length}</div>
+          </div>
+          
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
