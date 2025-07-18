@@ -20,7 +20,13 @@ import {
   Sparkles,
   Star,
   Calendar,
-  Building2
+  Building2,
+  Mail,
+  Phone,
+  MapPin,
+  Twitter,
+  Linkedin,
+  Github
 } from "lucide-react";
 
 // Hero Section Component
@@ -1337,6 +1343,152 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="relative bg-gray-900 text-white overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-gray-900" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+        
+        <div className="relative container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            
+            {/* Company Info */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  VentureAI
+                </span>
+              </div>
+              <p className="text-gray-400 leading-relaxed">
+                Революционная AI-платформа для автоматизации скрининга питч-деков венчурных фондов.
+              </p>
+              <div className="flex gap-4">
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
+                >
+                  <Twitter className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                </motion.a>
+              </div>
+            </div>
+
+            {/* Product */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-white">Продукт</h4>
+              <nav className="space-y-3">
+                <a href="#features" className="block text-gray-400 hover:text-white transition-colors">
+                  Возможности
+                </a>
+                <a href="#benefits" className="block text-gray-400 hover:text-white transition-colors">
+                  Преимущества
+                </a>
+                <a href="#pricing" className="block text-gray-400 hover:text-white transition-colors">
+                  Тарифы
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  API Документация
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Интеграции
+                </a>
+              </nav>
+            </div>
+
+            {/* Company */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-white">Компания</h4>
+              <nav className="space-y-3">
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  О нас
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Команда
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Карьера
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Пресс-центр
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Блог
+                </a>
+              </nav>
+            </div>
+
+            {/* Support */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-white">Поддержка</h4>
+              <nav className="space-y-3">
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Помощь
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Документация
+                </a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                  Статус системы
+                </a>
+              </nav>
+              
+              <div className="pt-4 space-y-3">
+                <div className="flex items-center gap-3 text-gray-400">
+                  <Mail className="w-4 h-4" />
+                  <span className="text-sm">hello@venture-ai.ru</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-400">
+                  <Phone className="w-4 h-4" />
+                  <span className="text-sm">+7 (495) 123-45-67</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-400">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-sm">Москва, Россия</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="text-gray-400 text-sm">
+                © 2024 VentureAI. Все права защищены.
+              </div>
+              <div className="flex gap-6 text-sm">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  Условия использования
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  Политика конфиденциальности
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  Cookies
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
