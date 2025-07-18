@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   ArrowRight, 
@@ -150,99 +151,274 @@ function HeroSection() {
   );
 }
 
-// Problem Section Component
+// Problem Section Component - Interactive Day in the Life
 function ProblemSection() {
-  const problems = [
+  const [currentTime, setCurrentTime] = useState(0);
+  
+  const daySchedule = [
     {
-      icon: <Clock className="w-6 h-6 text-red-400" />,
-      title: "Огромные временные затраты",
-      description: "Аналитики тратят часы на рутинную обработку каждого питч-дека. Крупные фонды получают до 100+ презентаций в день.",
-      severity: 'high' as const
+      time: "9:00",
+      action: "Открытие первого питч-дека",
+      description: "15 слайдов о \"революционном решении в logistics\"",
+      outcome: "Pre-seed, $50K, не подходит (мин. $1M)",
+      timeSpent: 12,
+      icon: <Clock className="w-5 h-5" />,
+      type: "waste",
+      pitchDecks: 1
     },
     {
-      icon: <DollarSign className="w-6 h-6 text-orange-400" />,
-      title: "Низкая эффективность скрининга",
-      description: "95-99% входящих питч-деков не соответствуют инвестиционным критериям, но требуют полной проверки.",
-      severity: 'high' as const
+      time: "9:15",
+      action: "Второй питч-дек",
+      description: "\"Захватим рынок $500B\"",
+      outcome: "Реальный рынок $5B, завышение в 100x",
+      timeSpent: 10,
+      icon: <TrendingDown className="w-5 h-5" />,
+      type: "waste",
+      pitchDecks: 2
     },
     {
-      icon: <Users className="w-6 h-6 text-purple-400" />,
-      title: "Высокие затраты на персонал",
-      description: "Необходимо содержать большую команду аналитиков для обработки входящего потока заявок.",
-      severity: 'medium' as const
+      time: "10:30",
+      action: "Поиск данных по рынку",
+      description: "Проверка market size вручную",
+      outcome: "Большинство данных неточные",
+      timeSpent: 30,
+      icon: <Target className="w-5 h-5" />,
+      type: "manual",
+      pitchDecks: 5
     },
     {
-      icon: <TrendingDown className="w-6 h-6 text-red-400" />,
-      title: "Риск пропуска выгодных сделок",
-      description: "Из-за временных ограничений есть высокий риск пропустить потенциально интересную возможность.",
-      severity: 'high' as const
+      time: "11:30",
+      action: "8 питч-деков просмотрено",
+      description: "Ни один не подходит критериям",
+      outcome: "70 питч-деков остается",
+      timeSpent: 0,
+      icon: <AlertTriangle className="w-5 h-5" />,
+      type: "status",
+      pitchDecks: 8
     },
     {
-      icon: <AlertTriangle className="w-6 h-6 text-yellow-400" />,
-      title: "Дублирование работы",
-      description: "Research рынков, фактчекинг и проверка критериев выполняются вручную для каждого стартапа.",
-      severity: 'medium' as const
-    },
-    {
-      icon: <Target className="w-6 h-6 text-blue-400" />,
-      title: "Отсутствие стандартизации",
-      description: "Каждый питч-дек имеет уникальный стиль, что затрудняет потоковый формат скрининга.",
-      severity: 'medium' as const
+      time: "17:00",
+      action: "Конец рабочего дня",
+      description: "25 питч-деков просмотрено",
+      outcome: "2 отправлено партнерам, 40 на завтра",
+      timeSpent: 0,
+      icon: <Users className="w-5 h-5" />,
+      type: "result",
+      pitchDecks: 25
     }
   ];
 
-  const severityColors = {
-    high: 'text-red-400 bg-red-500/10',
-    medium: 'text-orange-400 bg-orange-500/10',
-    low: 'text-yellow-400 bg-yellow-500/10'
-  };
+  const stats = [
+    {
+      value: "70",
+      label: "питч-деков в очереди",
+      color: "text-red-500",
+      icon: <AlertTriangle className="w-4 h-4" />
+    },
+    {
+      value: "96%",
+      label: "не подходят критериям",
+      color: "text-orange-500",
+      icon: <TrendingDown className="w-4 h-4" />
+    },
+    {
+      value: "12 мин",
+      label: "на каждый питч-дек",
+      color: "text-yellow-500",
+      icon: <Clock className="w-4 h-4" />
+    },
+    {
+      value: "8 часов",
+      label: "потрачено впустую",
+      color: "text-red-500",
+      icon: <DollarSign className="w-4 h-4" />
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime((prev) => (prev + 1) % daySchedule.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section id="features" className="py-20 px-4 bg-background">
+    <section id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
-            Проблемы венчурных фондов
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400 text-sm font-medium mb-6"
+          >
+            <AlertTriangle className="w-4 h-4" />
+            Узнайте себя
+          </motion.div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Каждый день вы тонете в{" "}
+            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+              океане питч-деков
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ключевые болевые точки, с которыми сталкиваются аналитики и партнеры венчурных фондов ежедневно
+          
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Если вы аналитик венчурного фонда, то эта ситуация вам знакома до боли.
+            <br />
+            <strong className="text-foreground">Утро понедельника.</strong> В почте 47 новых питч-деков + 23 с пятницы = 70 презентаций на сегодня.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {problems.map((problem, index) => (
+
+        {/* Interactive Timeline */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Timeline */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left">
+              📅 Обычный день аналитика
+            </h3>
+            
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-200 to-orange-200 dark:from-red-800 dark:to-orange-800" />
+              
+              {daySchedule.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ 
+                    opacity: currentTime >= index ? 1 : 0.3,
+                    x: 0 
+                  }}
+                  transition={{ delay: index * 0.2 }}
+                  className={`relative flex items-start gap-4 pb-8 ${
+                    currentTime === index ? 'scale-105' : ''
+                  }`}
+                >
+                  {/* Timeline dot */}
+                  <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center ${
+                    item.type === 'waste' ? 'bg-red-100 text-red-600 border-2 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800' :
+                    item.type === 'manual' ? 'bg-yellow-100 text-yellow-600 border-2 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-400 dark:border-yellow-800' :
+                    item.type === 'status' ? 'bg-orange-100 text-orange-600 border-2 border-orange-200 dark:bg-orange-950 dark:text-orange-400 dark:border-orange-800' :
+                    'bg-gray-100 text-gray-600 border-2 border-gray-200 dark:bg-gray-950 dark:text-gray-400 dark:border-gray-800'
+                  } transition-all duration-300`}>
+                    {item.icon}
+                  </div>
+                  
+                  {/* Content */}
+                  <div className={`flex-1 ${currentTime === index ? 'bg-card border border-border rounded-lg p-4 shadow-lg' : 'pt-2'}`}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-lg font-bold text-primary">{item.time}</span>
+                      <span className="text-sm bg-secondary/50 px-2 py-1 rounded">
+                        {item.pitchDecks} питч-деков
+                      </span>
+                    </div>
+                    
+                    <h4 className="font-semibold text-foreground mb-1">
+                      {item.action}
+                    </h4>
+                    
+                    <p className="text-sm text-muted-foreground mb-2">
+                      {item.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium text-destructive">
+                        {item.outcome}
+                      </span>
+                      {item.timeSpent > 0 && (
+                        <span className="text-xs bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400 px-2 py-1 rounded">
+                          {item.timeSpent} мин потрачено
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Dashboard */}
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left">
+              📊 Статистика дня
+            </h3>
+            
+            {/* Pain Points Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  className="bg-card border border-border rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300"
+                >
+                  <div className={`flex items-center justify-center gap-2 ${stat.color} mb-2`}>
+                    {stat.icon}
+                    <span className="text-2xl font-bold">{stat.value}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Daily Summary */}
             <motion.div
-              key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
+              transition={{ delay: 1 }}
+              className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-200 dark:border-red-800 rounded-lg p-6"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="p-3 rounded-lg bg-muted/50">
-                  {problem.icon}
-                </div>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${severityColors[problem.severity]}`}>
-                  {problem.severity === 'high' ? 'ВЫСОКИЙ' : problem.severity === 'medium' ? 'СРЕДНИЙ' : 'НИЗКИЙ'}
-                </span>
-              </div>
+              <h4 className="font-bold text-foreground mb-4 flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-orange-500" />
+                Результат дня
+              </h4>
               
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {problem.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {problem.description}
-              </p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Просмотрено питч-деков:</span>
+                  <span className="font-semibold">25 из 70</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Отправлено партнерам:</span>
+                  <span className="font-semibold text-green-600">2</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Перенесено на завтра:</span>
+                  <span className="font-semibold text-red-500">45</span>
+                </div>
+                <div className="border-t border-border pt-3 mt-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">Риск пропуска Airbnb:</span>
+                    <span className="font-bold text-red-500">ВЫСОКИЙ</span>
+                  </div>
+                </div>
+              </div>
             </motion.div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-muted/50 rounded-full">
-            <AlertTriangle className="w-4 h-4 text-orange-400" />
-            <span className="text-sm text-muted-foreground">
-              Эти проблемы стоят вашему фонду времени, денег и упущенных возможностей
-            </span>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="text-center bg-card border border-border rounded-lg p-6"
+            >
+              <h4 className="text-lg font-bold text-foreground mb-4">
+                Знакомо? 🤔
+              </h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                Если да, то продолжайте читать. У нас есть решение.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+              >
+                Посмотреть решение
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+            </motion.div>
           </div>
         </div>
       </div>
