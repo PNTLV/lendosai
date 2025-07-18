@@ -450,8 +450,22 @@ function ProblemSection() {
 // Benefits Section Component with Interface Mockups
 function BenefitsSection() {
   return (
-    <section id="benefits" className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="benefits" className="relative py-16 md:py-24 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-purple-100/50 dark:from-blue-950/50 dark:via-indigo-950/50 dark:to-purple-950/50 overflow-hidden">
+      {/* Большой mesh градиент */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] via-purple-500/[0.05] to-pink-500/[0.03] dark:from-blue-400/[0.08] dark:via-purple-400/[0.12] dark:to-pink-400/[0.08]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-transparent via-blue-100/20 to-transparent dark:via-blue-900/30" />
+      
+      {/* Декоративные floating элементы */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '2s'}} />
+      <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-gradient-to-br from-cyan-400/25 to-blue-400/25 rounded-full blur-lg animate-pulse" style={{animationDelay: '1s'}} />
+      <div className="absolute top-10 right-1/4 w-60 h-60 bg-gradient-to-br from-indigo-300/10 to-purple-300/10 rounded-full blur-2xl animate-pulse" style={{animationDelay: '3s'}} />
+      
+      {/* Геометрические паттерны */}
+      <div className="absolute top-32 left-1/3 w-24 h-24 border-2 border-blue-200/30 dark:border-blue-700/30 rounded-lg rotate-45 animate-pulse" style={{animationDelay: '1.5s'}} />
+      <div className="absolute bottom-32 right-1/3 w-16 h-16 border border-purple-200/40 dark:border-purple-700/40 rounded-full animate-pulse" style={{animationDelay: '2.5s'}} />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
@@ -915,8 +929,19 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section id="testimonials" className="py-24 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4">
+    <section id="testimonials" className="relative py-24 bg-gradient-to-br from-purple-50/70 via-pink-50/40 to-blue-50/70 dark:from-purple-950/70 dark:via-pink-950/40 dark:to-blue-950/70 overflow-hidden">
+      {/* Множественные декоративные слои */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.06] via-pink-500/[0.04] to-blue-500/[0.06] dark:from-purple-400/[0.15] dark:via-pink-400/[0.08] dark:to-blue-400/[0.15]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-purple-100/25 to-transparent dark:via-purple-900/35" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,purple-200/15,transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,purple-800/25,transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,pink-200/15,transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,pink-800/25,transparent_50%)]" />
+      
+      {/* Floating декорации */}
+      <div className="absolute top-16 left-8 w-28 h-28 bg-gradient-to-br from-purple-300/25 to-pink-300/25 dark:from-purple-700/35 dark:to-pink-700/35 rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-16 right-8 w-36 h-36 bg-gradient-to-br from-blue-300/25 to-purple-300/25 dark:from-blue-700/35 dark:to-purple-700/35 rounded-full blur-xl animate-pulse" style={{animationDelay: '2s'}} />
+      <div className="absolute top-1/3 right-16 w-20 h-20 bg-gradient-to-br from-pink-300/30 to-rose-300/30 dark:from-pink-700/40 dark:to-rose-700/40 rounded-full blur-lg animate-pulse" style={{animationDelay: '1s'}} />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -1162,8 +1187,20 @@ function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="relative py-20 bg-gradient-to-br from-gray-50 via-blue-50/60 to-purple-50/60 dark:from-gray-900 dark:via-blue-950/60 dark:to-purple-950/60 overflow-hidden">
+      {/* Яркий mesh background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.05] via-purple-500/[0.08] to-pink-500/[0.05] dark:from-blue-400/[0.12] dark:via-purple-400/[0.18] dark:to-pink-400/[0.12]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-transparent via-purple-100/30 to-transparent dark:via-purple-900/40" />
+      <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,blue-500/5_120deg,purple-500/8_240deg,transparent_360deg)] dark:bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,blue-400/10_120deg,purple-400/15_240deg,transparent_360deg)]" />
+      
+      {/* Декоративные geometric элементы */}
+      <div className="absolute top-10 right-20 w-24 h-24 border-2 border-blue-300/40 dark:border-blue-600/40 rounded-xl rotate-12 animate-pulse" />
+      <div className="absolute bottom-20 left-16 w-32 h-32 border-2 border-purple-300/40 dark:border-purple-600/40 rounded-2xl -rotate-12 animate-pulse" style={{animationDelay: '1.5s'}} />
+      <div className="absolute top-1/3 right-1/3 w-16 h-16 bg-gradient-to-br from-blue-200/30 to-purple-200/30 dark:from-blue-800/40 dark:to-purple-800/40 rounded-lg rotate-45 animate-pulse" style={{animationDelay: '0.5s'}} />
+      <div className="absolute top-20 left-1/4 w-48 h-48 bg-gradient-to-br from-indigo-200/20 to-cyan-200/20 dark:from-indigo-800/30 dark:to-cyan-800/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+      <div className="absolute bottom-10 right-1/4 w-36 h-36 bg-gradient-to-br from-rose-200/20 to-pink-200/20 dark:from-rose-800/30 dark:to-pink-800/30 rounded-full blur-2xl animate-pulse" style={{animationDelay: '3s'}} />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
@@ -1257,7 +1294,10 @@ function PricingSection() {
 // Main Landing Page Component
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50/60 via-purple-50/30 to-pink-50/40 dark:from-blue-950/60 dark:via-purple-950/30 dark:to-pink-950/40 relative overflow-hidden">
+      {/* Глобальный декоративный слой */}
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-500/[0.02] via-purple-500/[0.03] to-pink-500/[0.02] dark:from-blue-400/[0.06] dark:via-purple-400/[0.08] dark:to-pink-400/[0.06] pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-blue-100/10 to-transparent dark:via-blue-900/20 pointer-events-none" />
       <HeroSection />
       <ProblemSection />
       <BenefitsSection />
@@ -1265,8 +1305,14 @@ export default function LandingPage() {
       <PricingSection />
       
       {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary via-primary/90 to-primary">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 bg-gradient-to-r from-blue-600 via-purple-600/90 to-indigo-600 overflow-hidden">
+        {/* CTA декоративные элементы */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.03]" />
+        <div className="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}} />
+        <div className="absolute top-20 right-1/4 w-16 h-16 bg-white/15 rounded-full blur-lg animate-pulse" style={{animationDelay: '2s'}} />
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
