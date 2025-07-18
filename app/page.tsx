@@ -151,12 +151,8 @@ function HeroSection() {
   );
 }
 
-// Problem Section Component - Scroll-based Animation
+// Problem Section Component - Static Timeline
 function ProblemSection() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  
   const daySchedule = [
     {
       time: "9:00",
@@ -237,83 +233,11 @@ function ProblemSection() {
     }
   ];
 
-  // Calculate how many timeline items should be active based on scroll progress
-  // Минимум 1 элемент активен когда секция в зоне видимости (scrollProgress > 0)
-  const activeTimelineItems = scrollProgress > 0 
-    ? Math.min(daySchedule.length, Math.floor(scrollProgress * daySchedule.length) + 1)
-    : 0;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionBottom = rect.bottom;
-      
-      let progress = 0;
-      
-      // Секция еще не появилась
-      if (sectionTop >= windowHeight) {
-        progress = 0;
-      }
-      // Секция полностью ушла вверх за экран
-      else if (sectionBottom <= 0) {
-        progress = 1;
-      }
-      // Секция в viewport - анимация происходит быстро, пока секция видна
-      else {
-        // Анимация должна завершиться когда секция полностью в viewport
-        // Начинается когда sectionTop = windowHeight (progress = 0)
-        // Завершается когда sectionTop = windowHeight * 0.2 (progress = 1)
-        // Это означает, что анимация происходит на первых 80% появления секции
-        const animationZone = windowHeight * 0.8; // 80% от высоты экрана
-        const scrolledDistance = windowHeight - sectionTop;
-        progress = Math.max(0, Math.min(1, scrolledDistance / animationZone));
-      }
-      
-      setScrollProgress(progress);
-    };
-
-    // Intersection Observer для оптимизации - только слушаем scroll когда секция рядом
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-        if (entry.isIntersecting) {
-          handleScroll(); // Обновляем прогресс когда секция входит в зону видимости
-        }
-      },
-      { rootMargin: '100px' } // Начинаем отслеживать за 100px до появления
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    // Добавляем scroll listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Начальный расчет
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
-  }, []);
-
   return (
-    <section ref={sectionRef} id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
+    <section id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          {/* Debug Progress Indicator - временно для отладки */}
-          <div className="fixed top-4 right-4 bg-black/80 text-white p-2 rounded text-xs font-mono z-50">
-            <div>Scroll Progress: {(scrollProgress * 100).toFixed(1)}%</div>
-            <div>Active Items: {activeTimelineItems}/{daySchedule.length}</div>
-          </div>
-          
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -349,33 +273,26 @@ function ProblemSection() {
               {/* Timeline line */}
               <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-200 to-orange-200 dark:from-red-800 dark:to-orange-800" />
               
-              {daySchedule.map((item, index) => (
-                                 <motion.div
+                             {daySchedule.map((item, index) => (
+                 <motion.div
                    key={index}
                    initial={{ opacity: 0, x: -20 }}
-                   animate={{ 
-                     opacity: index < activeTimelineItems ? 1 : 0.3,
-                     x: 0 
-                   }}
+                   animate={{ opacity: 1, x: 0 }}
                    transition={{ delay: index * 0.2 }}
-                   className={`relative flex items-start gap-4 pb-8 ${
-                     index === activeTimelineItems - 1 && activeTimelineItems > 0 ? 'scale-105' : ''
-                   }`}
+                   className="relative flex items-start gap-4 pb-8"
                  >
                    {/* Timeline dot */}
                    <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center ${
-                     index < activeTimelineItems
-                       ? item.type === 'waste' ? 'bg-red-100 text-red-600 border-2 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800' :
-                         item.type === 'manual' ? 'bg-yellow-100 text-yellow-600 border-2 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-400 dark:border-yellow-800' :
-                         item.type === 'status' ? 'bg-orange-100 text-orange-600 border-2 border-orange-200 dark:bg-orange-950 dark:text-orange-400 dark:border-orange-800' :
-                         'bg-gray-100 text-gray-600 border-2 border-gray-200 dark:bg-gray-950 dark:text-gray-400 dark:border-gray-800'
-                       : 'bg-gray-50 text-gray-400 border-2 border-gray-100 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-800'
-                   } transition-all duration-500`}>
+                     item.type === 'waste' ? 'bg-red-100 text-red-600 border-2 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800' :
+                     item.type === 'manual' ? 'bg-yellow-100 text-yellow-600 border-2 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-400 dark:border-yellow-800' :
+                     item.type === 'status' ? 'bg-orange-100 text-orange-600 border-2 border-orange-200 dark:bg-orange-950 dark:text-orange-400 dark:border-orange-800' :
+                     'bg-gray-100 text-gray-600 border-2 border-gray-200 dark:bg-gray-950 dark:text-gray-400 dark:border-gray-800'
+                   } transition-all duration-300`}>
                      {item.icon}
                    </div>
                    
                    {/* Content */}
-                   <div className={`flex-1 ${index === activeTimelineItems - 1 && activeTimelineItems > 0 ? 'bg-card border border-border rounded-lg p-4 shadow-lg' : 'pt-2'}`}>
+                   <div className="flex-1 pt-2">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-lg font-bold text-primary">{item.time}</span>
                       <span className="text-sm bg-secondary/50 px-2 py-1 rounded">
