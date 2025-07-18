@@ -256,7 +256,7 @@ function ProblemSection() {
       
       let progress = 0;
       
-      // Секция появляется снизу экрана
+      // Секция еще не появилась
       if (sectionTop >= windowHeight) {
         progress = 0;
       }
@@ -264,14 +264,15 @@ function ProblemSection() {
       else if (sectionBottom <= 0) {
         progress = 1;
       }
-      // Секция в процессе прокрутки через viewport
+      // Секция в viewport - анимация происходит быстро, пока секция видна
       else {
-        // Когда секция только начинает появляться: sectionTop = windowHeight, progress = 0
-        // Когда секция уходит наверх: sectionBottom = 0, progress = 1
-        // Общий путь который должна пройти секция = windowHeight + sectionHeight
-        const totalScrollDistance = windowHeight + sectionHeight;
+        // Анимация должна завершиться когда секция полностью в viewport
+        // Начинается когда sectionTop = windowHeight (progress = 0)
+        // Завершается когда sectionTop = windowHeight * 0.2 (progress = 1)
+        // Это означает, что анимация происходит на первых 80% появления секции
+        const animationZone = windowHeight * 0.8; // 80% от высоты экрана
         const scrolledDistance = windowHeight - sectionTop;
-        progress = Math.max(0, Math.min(1, scrolledDistance / totalScrollDistance));
+        progress = Math.max(0, Math.min(1, scrolledDistance / animationZone));
       }
       
       setScrollProgress(progress);
