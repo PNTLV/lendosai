@@ -18,7 +18,9 @@ import {
   CheckCircle,
   Crown,
   Sparkles,
-  Star
+  Star,
+  Calendar,
+  Building2
 } from "lucide-react";
 
 // Hero Section Component
@@ -156,65 +158,65 @@ function ProblemSection() {
   const daySchedule = [
     {
       time: "9:00",
-      action: "Открытие первого питч-дека",
+      action: "Первые питч-деки",
       description: "15 слайдов о \"революционном решении в logistics\"",
-      outcome: "Pre-seed, $50K, не подходит (мин. $1M)",
-      timeSpent: 12,
+      outcome: "Pre-seed, $50K, не подходят (мин. $1M)",
+      timeSpent: 48,
       icon: <Clock className="w-5 h-5" />,
       type: "waste",
-      pitchDecks: 1
+      pitchDecks: 4
     },
     {
-      time: "9:15",
-      action: "Второй питч-дек",
-      description: "\"Захватим рынок $500B\"",
-      outcome: "Реальный рынок $5B, завышение в 100x",
-      timeSpent: 10,
+      time: "10:00",
+      action: "Продолжаем просмотр",
+      description: "\"Захватим рынок $500B\", типичные завышения",
+      outcome: "Реальные рынки $5-10B, завышения в 50-100x",
+      timeSpent: 60,
       icon: <TrendingDown className="w-5 h-5" />,
       type: "waste",
-      pitchDecks: 2
+      pitchDecks: 10
     },
     {
-      time: "10:30",
-      action: "Поиск данных по рынку",
-      description: "Проверка market size вручную",
-      outcome: "Большинство данных неточные",
-      timeSpent: 30,
+      time: "12:00",
+      action: "Поиск данных по рынкам",
+      description: "Проверка market size вручную для перспективных",
+      outcome: "Большинство данных неточные или устаревшие",
+      timeSpent: 90,
       icon: <Target className="w-5 h-5" />,
       type: "manual",
-      pitchDecks: 5
+      pitchDecks: 20
     },
     {
-      time: "11:30",
-      action: "8 питч-деков просмотрено",
-      description: "Ни один не подходит критериям",
-      outcome: "70 питч-деков остается",
+      time: "15:00",
+      action: "20 питч-деков просмотрено",
+      description: "Ни один пока не подходит критериям фонда",
+      outcome: "40 питч-деков еще остается",
       timeSpent: 0,
       icon: <AlertTriangle className="w-5 h-5" />,
       type: "status",
-      pitchDecks: 8
+      pitchDecks: 20
     },
     {
-      time: "17:00",
-      action: "Конец рабочего дня",
-      description: "25 питч-деков просмотрено",
-      outcome: "2 отправлено партнерам, 40 на завтра",
+      time: "18:00",
+      action: "Переработка - конец дня",
+      description: "50 питч-деков просмотрено за день",
+      outcome: "3 отправлено партнерам, 10 на завтра",
       timeSpent: 0,
       icon: <Users className="w-5 h-5" />,
       type: "result",
-      pitchDecks: 25
+      pitchDecks: 50
     }
   ];
 
   const stats = [
     {
-      value: "70",
+      value: "60",
       label: "питч-деков в очереди",
       color: "text-red-500",
       icon: <AlertTriangle className="w-4 h-4" />
     },
     {
-      value: "96%",
+      value: "95%",
       label: "не подходят критериям",
       color: "text-orange-500",
       icon: <TrendingDown className="w-4 h-4" />
@@ -226,10 +228,10 @@ function ProblemSection() {
       icon: <Clock className="w-4 h-4" />
     },
     {
-      value: "8 часов",
+      value: "7 часов",
       label: "потрачено впустую",
       color: "text-red-500",
-      icon: <DollarSign className="w-4 h-4" />
+      icon: <Clock className="w-4 h-4" />
     }
   ];
 
@@ -254,11 +256,44 @@ function ProblemSection() {
             </span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
             Если вы аналитик венчурного фонда, то эта ситуация вам знакома до боли.
-            <br />
-            <strong className="text-foreground">Утро понедельника.</strong> В почте 47 новых питч-деков + 23 с пятницы = 70 презентаций на сегодня.
           </p>
+          
+          {/* Акцентный блок с ключевой информацией */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="max-w-4xl mx-auto mb-12"
+          >
+            <div className="bg-gradient-to-r from-red-50/80 to-orange-50/80 dark:from-red-950/30 dark:to-orange-950/30 border border-red-200/60 dark:border-red-800/60 rounded-xl p-6 text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <AlertTriangle className="w-5 h-5 text-red-500" />
+                <span className="text-lg font-semibold text-red-600 dark:text-red-400">
+                  Утро понедельника
+                </span>
+                <Clock className="w-5 h-5 text-red-500" />
+              </div>
+              
+              <div className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                В почте:{" "}
+                <span className="text-orange-600 dark:text-orange-400">40 новых</span>
+                {" "}+{" "}
+                <span className="text-red-600 dark:text-red-400">20 с пятницы</span>
+              </div>
+              
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-900/50 dark:to-orange-900/50 border border-red-200 dark:border-red-700 px-6 py-3 rounded-lg text-xl font-bold text-foreground">
+                <span>=</span>
+                <span className="text-red-600 dark:text-red-400">60 презентаций</span>
+                <span className="text-muted-foreground">на сегодня</span>
+              </div>
+              
+              <div className="mt-4 text-sm text-muted-foreground italic">
+                И это только понедельник...
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Interactive Timeline */}
@@ -364,20 +399,20 @@ function ProblemSection() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Просмотрено питч-деков:</span>
-                  <span className="font-semibold">25 из 70</span>
+                  <span className="font-semibold">50 из 60</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Отправлено партнерам:</span>
-                  <span className="font-semibold text-green-600">2</span>
+                  <span className="font-semibold text-green-600">3</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Перенесено на завтра:</span>
-                  <span className="font-semibold text-red-500">45</span>
+                  <span className="font-semibold text-red-500">10</span>
                 </div>
                 <div className="border-t border-border pt-3 mt-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Риск пропуска Airbnb:</span>
-                    <span className="font-bold text-red-500">ВЫСОКИЙ</span>
+                    <span className="text-sm font-medium">Страх фонда:</span>
+                    <span className="font-bold text-red-500">Пропустить следующий единорог</span>
                   </div>
                 </div>
               </div>
@@ -412,47 +447,8 @@ function ProblemSection() {
   );
 }
 
-// Benefits Section Component
+// Benefits Section Component with Interface Mockups
 function BenefitsSection() {
-  const benefits = [
-    {
-      icon: Brain,
-      title: "Автоматическая сегментация",
-      description: "Извлечение ключевых параметров: сегмент, размер раунда, стадия, команда, выручка. Автоматическая категоризация по отраслям и бизнес-моделям.",
-      badge: "AI-анализ"
-    },
-    {
-      icon: Target,
-      title: "Интеллектуальный скоринг",
-      description: "Настройка индивидуальных критериев фонда. AI-анализ соответствия каждого стартапа. Приоритизация наиболее релевантных возможностей.",
-      badge: "Скоринг"
-    },
-    {
-      icon: Shield,
-      title: "Автоматический фактчекинг",
-      description: "Верификация заявленных цифр по рынку и росту. Проверка финансовых показателей. Выявление потенциальных 'красных флагов'.",
-      badge: "Верификация"
-    },
-    {
-      icon: BarChart3,
-      title: "Независимый анализ рынков",
-      description: "Автоматическая генерация детальных отчетов по рынкам. Диаграммы, численные данные, прогнозы роста. Готовая аналитика для принятия решений.",
-      badge: "Аналитика"
-    },
-    {
-      icon: Zap,
-      title: "Увеличение throughput в 10x",
-      description: "Значительное сокращение времени на первичный анализ. Освобождение senior talent для high-value активностей: networking, due diligence, работа с портфелем.",
-      badge: "Производительность"
-    },
-    {
-      icon: Rocket,
-      title: "Конкурентное преимущество",
-      description: "Быстрее конкурентов отвечают на интересные предложения. Стандартизация процессов принятия решений. Снижение вероятности пропуска выгодных сделок.",
-      badge: "Преимущество"
-    }
-  ];
-
   return (
     <section id="benefits" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -463,189 +459,353 @@ function BenefitsSection() {
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Почему выбирают нашу платформу
+            Посмотрите, как это работает
           </h2>
           
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Мощные возможности, которые трансформируют рабочий процесс венчурных фондов
+            Реальные скриншоты платформы и мощные функции, которые трансформируют ваш рабочий процесс
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {benefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="relative overflow-hidden p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <benefit.icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                  </div>
-                  <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-secondary/50 text-secondary-foreground text-xs font-medium">
-                    {benefit.badge}
-                  </div>
-                </div>
-                
-                <h3 className="text-lg font-semibold text-foreground">
-                  {benefit.title}
-                </h3>
-                
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <CheckCircle className="h-5 w-5 text-green-500" />
-            <span className="text-sm text-muted-foreground">
-              Уже используют более 250+ венчурных фондов
-            </span>
-          </div>
-          
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors"
+        <div className="space-y-24">
+          {/* 1. Автоматическая сегментация */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-12 items-center"
           >
-            <Star className="h-4 w-4" />
-            Попробовать бесплатно
-          </motion.button>
-          
-          <p className="text-xs text-muted-foreground mt-3">
-            Без кредитной карты • Пробный период 14 дней
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Testimonials Section Component
-function TestimonialsSection() {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Александр Петров",
-      role: "Управляющий партнер",
-      company: "TechVentures Capital",
-      content: "Платформа кардинально изменила наш подход к скринингу. Теперь мы обрабатываем в 15 раз больше питч-деков при том же качестве анализа. Экономия времени составляет 85%.",
-      rating: 5,
-      avatar: "/api/placeholder/150/150",
-      verified: true,
-      results: ["15x больше питч-деков", "85% экономия времени", "Высокое качество"]
-    },
-    {
-      id: 2,
-      name: "Мария Соколова",
-      role: "Инвестиционный директор",
-      company: "Growth Partners",
-      content: "Автоматический фактчекинг и анализ рынка экономят нам минимум 20 часов в неделю на каждого аналитика. Качество insights значительно выше чем при ручном анализе.",
-      rating: 5,
-      avatar: "/api/placeholder/150/150",
-      verified: true,
-      results: ["20 часов экономии", "Лучшее качество", "Автоматизация"]
-    },
-    {
-      id: 3,
-      name: "Дмитрий Волков",
-      role: "Венчурный партнер",
-      company: "Innovation Fund",
-      content: "Благодаря платформе мы не пропустили ни одной перспективной сделки за последние 6 месяцев. Система точно определяет потенциал стартапов и приоритизирует заявки.",
-      rating: 5,
-      avatar: "/api/placeholder/150/150",
-      verified: true,
-      results: ["0 пропущенных сделок", "Точная приоритизация", "6 месяцев успеха"]
-    }
-  ];
-
-  return (
-    <section id="testimonials" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <Star className="w-4 h-4" />
-            Отзывы клиентов
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Доверяют лидеры индустрии
-          </h2>
-          
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Присоединяйтесь к сотням венчурных фондов, которые уже трансформировали свои процессы
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                ))}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
+                <Brain className="w-4 h-4" />
+                AI-анализ
               </div>
-              
-              <p className="text-sm text-foreground mb-6 leading-relaxed">
-                "{testimonial.content}"
+              <h3 className="text-3xl font-bold text-foreground mb-4">
+                Автоматическая сегментация
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                AI извлекает ключевые параметры из каждого питч-дека: сегмент, размер раунда, стадию, команду, выручку. 
+                Автоматически категоризирует стартапы по отраслям и бизнес-моделям.
               </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Извлечение данных за 2 секунды</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">15+ категорий автоматической сегментации</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Структурированное представление данных</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Mockup Dashboard */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <span className="text-sm text-gray-500 ml-2">VentureAI Dashboard</span>
+              </div>
               
-              <div className="grid grid-cols-1 gap-2 mb-6">
-                {testimonial.results.map((result, i) => (
-                  <div key={i} className="bg-muted/50 rounded-lg p-2 text-xs text-muted-foreground font-medium">
-                    {result}
+              <div className="space-y-4">
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100">Сегментация по отраслям</h4>
+                
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600 dark:text-green-400">23</div>
+                    <div className="text-xs text-green-700 dark:text-green-300">FinTech</div>
                   </div>
-                ))}
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400">18</div>
+                    <div className="text-xs text-blue-700 dark:text-blue-300">HealthTech</div>
+                  </div>
+                  <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-purple-600 dark:text-purple-400">15</div>
+                    <div className="text-xs text-purple-700 dark:text-purple-300">EdTech</div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">B2B SaaS</span>
+                    <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">34 стартапа</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">Consumer Apps</span>
+                    <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">12 стартапов</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">Marketplace</span>
+                    <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">8 стартапов</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 2. Интеллектуальный скоринг */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            {/* Mockup Scoring */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-gray-700 lg:order-1">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <span className="text-sm text-gray-500 ml-2">Smart Scoring</span>
               </div>
               
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary font-semibold">
-                    {testimonial.name.charAt(0)}
-                  </span>
+              <div className="space-y-4">
+                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-gray-900 dark:text-gray-100">FinTech Startup A</span>
+                    <span className="bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">Score: 92</span>
+                  </div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Series A • $2M раунд • B2B Payments</div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}, {testimonial.company}
-                  </p>
+                
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-gray-900 dark:text-gray-100">HealthTech Startup B</span>
+                    <span className="bg-blue-500 text-white px-2 py-1 rounded text-sm font-bold">Score: 87</span>
+                  </div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Seed • $800K раунд • Digital Health</div>
                 </div>
-                {testimonial.verified && (
-                  <CheckCircle className="w-4 h-4 text-green-500 ml-auto" />
-                )}
+                
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-gray-900 dark:text-gray-100">EdTech Startup C</span>
+                    <span className="bg-yellow-500 text-white px-2 py-1 rounded text-sm font-bold">Score: 74</span>
+                  </div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Pre-Seed • $300K раунд • Online Learning</div>
+                </div>
               </div>
-            </motion.div>
-          ))}
+            </div>
+
+            <div className="lg:order-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-sm font-medium mb-4">
+                <Target className="w-4 h-4" />
+                Скоринг
+              </div>
+              <h3 className="text-3xl font-bold text-foreground mb-4">
+                Интеллектуальный скоринг
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                AI анализирует каждый стартап на соответствие вашим инвестиционным критериям и присваивает скор релевантности. 
+                Карточки ранжируются по приоритету – самые перспективные возможности показываются первыми.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Настройка индивидуальных критериев фонда</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Автоматическая приоритизация сделок</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Скоринг за секунды вместо часов</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 3. Автоматический фактчекинг */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm font-medium mb-4">
+                <Shield className="w-4 h-4" />
+                Верификация
+              </div>
+              <h3 className="text-3xl font-bold text-foreground mb-4">
+                Автоматический фактчекинг
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Одним кликом запускается верификация всех заявленных данных: размер рынка, 
+                финансовые показатели, конкурентное окружение. Система выявляет несоответствия и потенциальные "красные флаги".
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Проверка размера рынка и роста</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Верификация финансовых метрик</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Выявление "красных флагов"</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Mockup Fact-checking */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <span className="text-sm text-gray-500 ml-2">Fact Check Results</span>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100">Результаты проверки</h4>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                    <div className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
+                      <AlertTriangle className="w-4 h-4 text-red-600 dark:text-red-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-red-900 dark:text-red-100">Размер рынка завышен в 10 раз</div>
+                      <div className="text-xs text-red-700 dark:text-red-300">Заявлено $50B, реальный TAM $5B</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                    <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-green-900 dark:text-green-100">Финансовые показатели подтверждены</div>
+                      <div className="text-xs text-green-700 dark:text-green-300">MRR $50K соответствует заявленному</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+                    <div className="w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-yellow-900 dark:text-yellow-100">Проверка конкурентов в процессе</div>
+                      <div className="text-xs text-yellow-700 dark:text-yellow-300">Анализ 15 основных игроков рынка</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 4. Анализ рынков */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            {/* Mockup Market Analysis */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-gray-700 lg:order-1">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <span className="text-sm text-gray-500 ml-2">Market Analytics</span>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100">Анализ рынка FinTech</h4>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                    <div className="text-xl font-bold text-blue-600 dark:text-blue-400">$127B</div>
+                    <div className="text-xs text-blue-700 dark:text-blue-300">Total TAM</div>
+                  </div>
+                  <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+                    <div className="text-xl font-bold text-green-600 dark:text-green-400">+23%</div>
+                    <div className="text-xs text-green-700 dark:text-green-300">CAGR</div>
+                  </div>
+                </div>
+                
+                <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">Основные игроки</div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-700 dark:text-gray-300">Stripe</span>
+                      <span className="text-gray-500">$95B оценка</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-700 dark:text-gray-300">Klarna</span>
+                      <span className="text-gray-500">$46B оценка</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-700 dark:text-gray-300">Plaid</span>
+                      <span className="text-gray-500">$13B оценка</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full">
+                  <div className="bg-blue-600 h-2 rounded-full" style={{width: '75%'}}></div>
+                </div>
+                <div className="text-xs text-gray-500">Рост рынка: 75% за последние 3 года</div>
+              </div>
+            </div>
+
+            <div className="lg:order-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-sm font-medium mb-4">
+                <BarChart3 className="w-4 h-4" />
+                Аналитика
+              </div>
+              <h3 className="text-3xl font-bold text-foreground mb-4">
+                Независимый анализ рынков
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Автоматическая генерация детальных отчетов по рынкам с диаграммами, численными данными и прогнозами роста. 
+                Готовая аналитика для быстрого принятия инвестиционных решений.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Актуальные данные по размеру рынка</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Анализ конкурентного ландшафта</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-foreground">Прогнозы и тренды развития</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        <div className="text-center mt-16">
+        {/* Stats */}
+        <div className="text-center mt-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "250+", label: "Венчурных фондов" },
-              { number: "98%", label: "Уровень удовлетворенности" },
               { number: "10x", label: "Увеличение throughput" },
-              { number: "85%", label: "Экономия времени" }
+              { number: "85%", label: "Экономия времени" },
+              { number: "250+", label: "Венчурных фондов" },
+              { number: "98%", label: "Точность анализа" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
                 <div className="text-3xl font-bold text-primary mb-2">
@@ -658,6 +818,256 @@ function TestimonialsSection() {
             ))}
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+// Company Logo Components
+const TechVenturesLogo = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="12" fill="url(#tech-gradient)"/>
+    <path d="M14 16H34V20H30V32H26V20H22V32H18V20H14V16Z" fill="white"/>
+    <circle cx="36" cy="12" r="4" fill="#0EA5E9"/>
+    <defs>
+      <linearGradient id="tech-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#1E40AF"/>
+        <stop offset="1" stopColor="#0EA5E9"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const GrowthPartnersLogo = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="12" fill="url(#growth-gradient)"/>
+    <path d="M16 32L20 24L26 28L32 16L34 18L26 32L20 28L16 32Z" fill="white" strokeWidth="2"/>
+    <circle cx="32" cy="16" r="2" fill="white"/>
+    <defs>
+      <linearGradient id="growth-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#059669"/>
+        <stop offset="1" stopColor="#10B981"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const InnovationFundLogo = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="12" fill="url(#innovation-gradient)"/>
+    <path d="M24 12L30 22H18L24 12Z" fill="white"/>
+    <circle cx="24" cy="28" r="4" fill="white"/>
+    <path d="M20 34H28V36H20V34Z" fill="white"/>
+    <defs>
+      <linearGradient id="innovation-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#7C3AED"/>
+        <stop offset="1" stopColor="#A855F7"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+// Interactive Testimonials Section Component
+function TestimonialsSection() {
+  const testimonials = [
+    {
+      id: 1,
+      name: "Александр Петров",
+      role: "Управляющий партнер", 
+      company: "TechVentures Capital",
+      content: "Платформа кардинально изменила наш подход к скринингу. Теперь мы обрабатываем в 15 раз больше питч-деков при том же качестве анализа. Экономия времени составляет 85%.",
+      rating: 5,
+      verified: true,
+      companyLogo: <TechVenturesLogo />,
+      companySize: "Mid-size fund",
+      timeUsing: "12 месяцев",
+      mainBenefit: "15x производительность",
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    },
+    {
+      id: 2,
+      name: "Мария Соколова",
+      role: "Инвестиционный директор",
+      company: "Growth Partners",
+      content: "Автоматический фактчекинг и анализ рынка экономят нам минимум 20 часов в неделю на каждого аналитика. Качество insights значительно выше чем при ручном анализе.",
+      rating: 5,
+      verified: true,
+      companyLogo: <GrowthPartnersLogo />,
+      companySize: "Large fund",
+      timeUsing: "8 месяцев",
+      mainBenefit: "20 часов экономии",
+      photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    },
+    {
+      id: 3,
+      name: "Дмитрий Волков",
+      role: "Венчурный партнер",
+      company: "Innovation Fund",
+      content: "Благодаря платформе мы не пропустили ни одной перспективной сделки за последние 6 месяцев. Система точно определяет потенциал стартапов и приоритизирует заявки.",
+      rating: 5,
+      verified: true,
+      companyLogo: <InnovationFundLogo />,
+      companySize: "Boutique fund",
+      timeUsing: "6 месяцев",
+      mainBenefit: "0 пропущенных сделок",
+      photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    }
+  ];
+
+  return (
+    <section id="testimonials" className="py-24 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6"
+          >
+            <Star className="w-4 h-4" />
+            Отзывы клиентов
+          </motion.div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
+          >
+            Доверяют лидеры индустрии
+          </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-muted-foreground max-w-3xl mx-auto"
+          >
+            Присоединяйтесь к сотням венчурных фондов, которые уже трансформировали свои процессы
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 overflow-hidden"
+            >
+              {/* Gradient background effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              {/* Company logo and info */}
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl overflow-hidden">
+                      {testimonial.companyLogo}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">{testimonial.company}</div>
+                      <div className="text-xs text-muted-foreground">{testimonial.companySize}</div>
+                    </div>
+                  </div>
+                  {testimonial.verified && (
+                    <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-1">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Rating */}
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + i * 0.1 }}
+                    >
+                      <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Content */}
+                <blockquote className="text-foreground mb-6 leading-relaxed font-medium">
+                  "{testimonial.content}"
+                </blockquote>
+                
+                {/* Key metric highlight */}
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-3 mb-6 border border-blue-200/50 dark:border-blue-800/50">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                      {testimonial.mainBenefit}
+                    </div>
+                    <div className="text-xs text-muted-foreground">Ключевой результат</div>
+                  </div>
+                </div>
+                
+                {/* Author info */}
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-full overflow-hidden">
+                    <img 
+                      src={testimonial.photo} 
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-foreground">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.role}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Использует {testimonial.timeUsing}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Trust indicators */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <div className="inline-flex items-center gap-6 bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+              </div>
+              <span className="font-medium text-foreground">250+ фондов</span>
+            </div>
+            <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center">
+                <Star className="w-5 h-5 text-yellow-500" />
+              </div>
+              <span className="font-medium text-foreground">4.9/5 рейтинг</span>
+            </div>
+            <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                <Shield className="w-5 h-5 text-blue-500" />
+              </div>
+              <span className="font-medium text-foreground">Безопасность SOC2</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -726,6 +1136,28 @@ function PricingSection() {
       borderGradient: "from-rose-400 to-pink-400",
       cta: "Связаться с продажами",
       isHighlighted: true
+    },
+    {
+      id: "enterprise",
+      name: "Enterprise",
+      subtitle: "Корпоративное решение",
+      description: "Индивидуальные возможности для крупных организаций",
+      price: { monthly: "По запросу", yearly: "По запросу" },
+      features: [
+        "Неограниченные скриnings",
+        "Неограниченное количество пользователей",
+        "Полный маркет-ресерч и аналитика",
+        "Персональный менеджер",
+        "Кастомные интеграции и API",
+        "Белая маркировка (White-label)",
+        "SLA соглашение",
+        "Обучение команды"
+      ],
+      icon: Building2,
+      gradient: "from-gray-500/20 to-slate-500/20",
+      borderGradient: "from-gray-400 to-slate-400",
+      cta: "Обсудить решение",
+      isEnterprise: true
     }
   ];
 
@@ -746,7 +1178,7 @@ function PricingSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
@@ -755,7 +1187,9 @@ function PricingSection() {
               transition={{ delay: index * 0.1 }}
               className={`relative bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300 ${
                 plan.isPopular ? 'ring-2 ring-primary/50 scale-105' : ''
-              } ${plan.isHighlighted ? 'bg-foreground text-background' : ''}`}
+              } ${plan.isHighlighted ? 'bg-foreground text-background' : ''} ${
+                plan.isEnterprise ? 'border-gray-400 dark:border-gray-600' : ''
+              }`}
             >
               {plan.badge && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
@@ -778,8 +1212,14 @@ function PricingSection() {
 
                 <div className="space-y-2">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold">${plan.price.monthly}</span>
-                    <span className="text-muted-foreground">/месяц</span>
+                    {typeof plan.price.monthly === 'string' ? (
+                      <span className="text-2xl font-bold text-muted-foreground">{plan.price.monthly}</span>
+                    ) : (
+                      <>
+                        <span className="text-3xl font-bold">${plan.price.monthly}</span>
+                        <span className="text-muted-foreground">/месяц</span>
+                      </>
+                    )}
                   </div>
                 </div>
 
@@ -808,24 +1248,7 @@ function PricingSection() {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <div className="max-w-2xl mx-auto bg-card border border-border rounded-lg p-8">
-            <h3 className="text-2xl font-bold mb-4">
-              Нужно корпоративное решение?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Свяжитесь с нашей командой продаж для обсуждения корпоративных тарифов и функций, адаптированных под потребности вашей организации.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-            >
-              <Star className="w-4 h-4" />
-              Связаться с продажами
-            </motion.button>
-          </div>
-        </div>
+
       </div>
     </section>
   );
