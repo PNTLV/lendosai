@@ -236,14 +236,14 @@ function ProblemSection() {
   ];
 
   return (
-    <section id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/30 to-orange-50/20 dark:from-red-950/20 dark:to-orange-950/10">
+    <section id="features" className="py-20 px-4 bg-gradient-to-b from-red-50/15 to-orange-50/10 dark:from-red-950/10 dark:to-orange-950/8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400 text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 text-sm font-medium mb-6"
           >
             <AlertTriangle className="w-4 h-4" />
             Узнайте себя
@@ -251,7 +251,7 @@ function ProblemSection() {
           
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Каждый день вы тонете в{" "}
-            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
               океане питч-деков
             </span>
           </h2>
@@ -267,10 +267,10 @@ function ProblemSection() {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="max-w-4xl mx-auto mb-12"
           >
-            <div className="bg-gradient-to-r from-red-50/80 to-orange-50/80 dark:from-red-950/30 dark:to-orange-950/30 border border-red-200/60 dark:border-red-800/60 rounded-xl p-6 text-center">
+            <div className="bg-gradient-to-r from-red-50/50 to-orange-50/50 dark:from-red-950/20 dark:to-orange-950/20 border border-red-200/40 dark:border-red-800/40 rounded-xl p-6 text-center">
               <div className="flex items-center justify-center gap-2 mb-3">
-                <AlertTriangle className="w-5 h-5 text-red-500" />
-                <span className="text-lg font-semibold text-red-600 dark:text-red-400">
+                                  <AlertTriangle className="w-5 h-5 text-red-400" />
+                  <span className="text-lg font-semibold text-red-500 dark:text-red-400">
                   Утро понедельника
                 </span>
                 <Clock className="w-5 h-5 text-red-500" />
@@ -283,7 +283,7 @@ function ProblemSection() {
                 <span className="text-red-600 dark:text-red-400">20 с пятницы</span>
               </div>
               
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-900/50 dark:to-orange-900/50 border border-red-200 dark:border-red-700 px-6 py-3 rounded-lg text-xl font-bold text-foreground">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 border border-red-200/50 dark:border-red-700/50 px-6 py-3 rounded-lg text-xl font-bold text-foreground">
                 <span>=</span>
                 <span className="text-red-600 dark:text-red-400">60 презентаций</span>
                 <span className="text-muted-foreground">на сегодня</span>
@@ -300,13 +300,14 @@ function ProblemSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Timeline */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left">
-              📅 Обычный день аналитика
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left flex items-center justify-center lg:justify-start gap-3">
+              <Calendar className="w-6 h-6 text-blue-500" />
+              Обычный день аналитика
             </h3>
             
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-200 to-orange-200 dark:from-red-800 dark:to-orange-800" />
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-200/60 to-orange-200/60 dark:from-red-800/60 dark:to-orange-800/60" />
               
                              {daySchedule.map((item, index) => (
                  <motion.div
@@ -318,9 +319,9 @@ function ProblemSection() {
                  >
                    {/* Timeline dot */}
                    <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center ${
-                     item.type === 'waste' ? 'bg-red-100 text-red-600 border-2 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800' :
-                     item.type === 'manual' ? 'bg-yellow-100 text-yellow-600 border-2 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-400 dark:border-yellow-800' :
-                     item.type === 'status' ? 'bg-orange-100 text-orange-600 border-2 border-orange-200 dark:bg-orange-950 dark:text-orange-400 dark:border-orange-800' :
+                                   item.type === 'waste' ? 'bg-red-50 text-red-500 border border-red-200/50 dark:bg-red-950/50 dark:text-red-400 dark:border-red-800/50' :
+              item.type === 'manual' ? 'bg-yellow-50 text-yellow-600 border border-yellow-200/50 dark:bg-yellow-950/50 dark:text-yellow-400 dark:border-yellow-800/50' :
+              item.type === 'status' ? 'bg-orange-50 text-orange-500 border border-orange-200/50 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' :
                      'bg-gray-100 text-gray-600 border-2 border-gray-200 dark:bg-gray-950 dark:text-gray-400 dark:border-gray-800'
                    } transition-all duration-300`}>
                      {item.icon}
@@ -361,8 +362,9 @@ function ProblemSection() {
 
           {/* Stats Dashboard */}
           <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left">
-              📊 Статистика дня
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left flex items-center justify-center lg:justify-start gap-3">
+              <BarChart3 className="w-6 h-6 text-blue-500" />
+              Статистика дня
             </h3>
             
             {/* Pain Points Grid */}
@@ -389,7 +391,7 @@ function ProblemSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-200 dark:border-red-800 rounded-lg p-6"
+              className="bg-gradient-to-r from-red-500/5 to-orange-500/5 border border-red-200/50 dark:border-red-800/50 rounded-lg p-6"
             >
               <h4 className="font-bold text-foreground mb-4 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-orange-500" />
