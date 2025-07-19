@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { 
   ArrowRight, 
   Clock, 
-  DollarSign, 
   Users, 
   TrendingDown, 
   AlertTriangle, 
@@ -39,7 +38,7 @@ function HeroSection() {
       transition: {
         duration: 1,
         delay: 0.5 + i * 0.2,
-        ease: [0.25, 0.4, 0.25, 1],
+        ease: "easeOut",
       },
     }),
   };
@@ -702,7 +701,7 @@ function BenefitsSection() {
               </h3>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Одним кликом запускается верификация всех заявленных данных: размер рынка, 
-                финансовые показатели, конкурентное окружение. Система выявляет несоответствия и потенциальные "красные флаги".
+                финансовые показатели, конкурентное окружение. Система выявляет несоответствия и потенциальные &quot;красные флаги&quot;.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -715,7 +714,7 @@ function BenefitsSection() {
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span className="text-foreground">Выявление "красных флагов"</span>
+                  <span className="text-foreground">Выявление &quot;красных флагов&quot;</span>
                 </div>
               </div>
             </div>
@@ -1071,7 +1070,7 @@ function TestimonialsSection() {
                 
                 {/* Content */}
                 <blockquote className="text-foreground mb-6 leading-relaxed font-medium">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </blockquote>
                 
                 {/* Key metric highlight */}
@@ -1087,11 +1086,12 @@ function TestimonialsSection() {
                 {/* Author info */}
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-full overflow-hidden">
-                    <img 
+                    <Image 
                       src={testimonial.photo} 
                       alt={testimonial.name}
+                      width={56}
+                      height={56}
                       className="w-full h-full object-cover"
-                      loading="lazy"
                     />
                   </div>
                   <div className="flex-1">
