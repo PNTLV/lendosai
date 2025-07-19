@@ -179,6 +179,20 @@ function HeroSection() {
               <span>Посмотреть демо</span>
             </motion.button>
           </motion.div>
+          
+          {/* Free trial info */}
+          <motion.div
+            custom={4}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex items-center justify-center gap-2 mt-6"
+          >
+            <div className="flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium">
+              <CheckCircle className="w-4 h-4" />
+              <span>Первые 5 питч-деков анализируем бесплатно</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -1379,27 +1393,29 @@ export default function LandingPage() {
                 Трансформируйте свой фонд с помощью AI и увеличьте эффективность скрининга в 15 раз
               </p>
 
-              {/* CTA Button */}
-              <div className="pt-2">
+              {/* CTA Section */}
+              <div className="flex flex-col items-center gap-6 pt-4">
+                
+                {/* Main CTA Button */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center justify-center gap-3 px-12 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/30 hover:shadow-blue-600/50"
+                  className="inline-flex items-center gap-4 px-12 py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-2xl font-bold text-xl transition-all duration-300 shadow-2xl shadow-blue-600/30 hover:shadow-blue-600/50"
                 >
-                  <Rocket className="w-6 h-6" />
-                  Начать внедрение
+                  <Rocket className="w-7 h-7" />
+                  Проанализировать 5 питч-деков бесплатно
                 </motion.button>
-              </div>
 
-              {/* Trust indicators */}
-              <div className="flex items-center gap-8 text-sm text-gray-400">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-400" />
-                  <span>Внедрение за 24 часа</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-400" />
-                  <span>Бесплатная демонстрация</span>
+                {/* Trust indicators - теперь связаны с кнопкой */}
+                <div className="flex items-center gap-8 text-sm text-gray-400 pt-2">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Внедрение за 24 часа</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Персональная поддержка</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
